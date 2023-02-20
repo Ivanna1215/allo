@@ -1,3 +1,4 @@
+import testData from "../fixtures/test-data";
 import mainPage from "../support/page-objects/main-page";
 
 describe('Test task for Allo', function () {
@@ -8,48 +9,47 @@ describe('Test task for Allo', function () {
 
   it('Verify if the price filter working correctly for the folloving marketplaces', () => {
     mainPage
-      .verifyPageIsOpened('https://allo.ua/')
-      .selectMarketplace('Каталог')
-      .selectCategory('Ноутбуки, ПК та планшети')
-      .selectSubcategory('Ноутбуки')
-      .filterByBrand('Lenovo')
-      .searchResults('Lenovo')
+      .verifyPageIsOpened(testData.url)
+      .selectMarketplace(testData.marketplace)
+      .selectCategory(testData.categoryComputers)
+      .selectSubcategory(testData.subcategoryLaptop)
+      .filterByBrand(testData.brandLaptop)
+      .searchResults(testData.brandLaptop)
       .filterByPriceRange(15000, 30000)
-      .filterByScreenSize('15.9')
+      .filterByScreenSize(testData.screenSize)
       .verifyPriceRangeFilter(15000, 30000)
   })
 
   it('Add items to the basket', () => {
     mainPage
-      .verifyPageIsOpened('https://allo.ua/')
-      .selectMarketplace('Каталог')
-      .selectCategory('Смартфони та телефони')
-      .selectSubcategory('Смартфони і мобільні телефони')
+      .verifyPageIsOpened(testData.url)
+      .selectMarketplace(testData.marketplace)
+      .selectCategory(testData.categoryConnection)
+      .selectSubcategory(testData.subcategoryPhones)
       .addItemsToTheBasket()
       .closeCheckout()
-      .selectMarketplace('Каталог')
-      .selectCategory('Телевізори та мультимедіа')
-      .selectSubcategory('Телевізори')
+      .selectMarketplace(testData.marketplace)
+      .selectCategory(testData.categoryMultimedia)
+      .selectSubcategory(testData.subcategoryTV)
       .addItemsToTheBasket()
       .verifyTotalPrice()
       .verifyDeleteButtonClickable()
-      .verifyBasketEmpty('Ваш кошик порожній.')
+      .verifyBasketEmpty(testData.verifyMessageAboutBasketEmpty)
       .closeModal()
   })
 
   it('Search the item', () => {
-    const searchItem = 'Apple iPhone'
     mainPage
-      .verifyPageIsOpened('https://allo.ua/')
-      .searchItem(searchItem)
-      .searchResults(searchItem)
+      .verifyPageIsOpened(testData.url)
+      .searchItem(testData.searchItem)
+      .searchResults(testData.searchItem)
   })
 
   it('Should successfully sign in to Allo', () => {
     mainPage
-      .verifyPageIsOpened('https://allo.ua/')
+      .verifyPageIsOpened(testData.url)
       .signIn()
-      .login()
+      .login(testData.number,testData.password)
       .verifyMyAccount()
 
   })

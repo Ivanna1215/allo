@@ -113,3 +113,6 @@ report.*.json
 *log*.xml
 .secrets.env
 cypress/reports
+screenshots/
+videos/
+mochawesome-report/

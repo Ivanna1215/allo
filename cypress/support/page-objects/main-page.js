@@ -1,18 +1,17 @@
 class MainPage {
 
     visitURL(url) {
-        cy.visit(url)
-        // .wait(3000)
+        cy.visit(url);
         return this;
     }
 
     verifyPageIsOpened(url) {
-        cy.wait(1500).url().should('include', url)
+        cy.wait(1500).url().should('include', url);
         return this;
     }
 
     selectMarketplace(marketplace) {
-        cy.wait(2000).get('[class="mh-catalog-btn"]').contains(marketplace).click()
+        cy.wait(2000).get('[class="mh-catalog-btn"]').contains(marketplace).click();
         return this;
     }
 
@@ -51,8 +50,8 @@ class MainPage {
 
     verifyPriceRangeFilter(from, to) {
         cy.get('.v-pb__cur .sum').each((item) => {
-            const price = parseInt(item.text().replace(/[^0-9.-]+/g, ''))
-            expect(price).to.be.within(from, to)
+            const price = parseInt(item.text().replace(/[^0-9.-]+/g, ''));
+            expect(price).to.be.within(from, to);
             return this;
         })
     }
@@ -107,7 +106,7 @@ class MainPage {
     verifyTotalPrice() {
         let sum = 0;
         cy.get('div[class="price-box__cur"]').each((price) => {
-            const text = price.text()
+            const text = price.text();
             const number = parseInt(text.replace(/[^0-9.-]+/g, ''));
             sum += number;
         }).then(() => {
@@ -122,54 +121,54 @@ class MainPage {
 
     verifyDeleteButtonClickable() {
         cy.get('.vi__close.remove').each(($el) => {
-            cy.wrap($el).first().click()
+            cy.wrap($el).first().click();
         })
-        return this
+        return this;
     }
 
     verifyBasketEmpty(text) {
-        cy.get('.cart-popup_empty').should('contain', text)
-        return this
+        cy.get('.cart-popup_empty').should('contain', text);
+        return this;
     }
 
     closeModal() {
-        cy.get('.v-modal__close-btn').click()
-        return this
+        cy.get('.v-modal__close-btn').click();
+        return this;
     }
 
     searchItem(itemName) {
-        cy.get('#search-form__input').type(itemName)
-        cy.get('.search-form__submit-button').click()
-        return this
+        cy.get('#search-form__input').type(itemName);
+        cy.get('.search-form__submit-button').click();
+        return this;
     }
 
     searchResults(searchItem) {
-        cy.get('.product-card').should('have.length.gt', 0)
+        cy.get('.product-card').wait(1000).should('have.length.gt', 0);
         cy.get('.product-card').each((item) => {
             cy.wrap(item)
                 .find('.product-card__title')
-                .should('contain', searchItem)
+                .should('contain', searchItem);
         })
 
-        return this
+        return this;
     }
 
     signIn() {
-        cy.get('.mh-profile').click()
-        return this
+        cy.get('.mh-profile').click();
+        return this;
     }
 
-    login() {
-        cy.get('#auth').type('+380990242246')
-        cy.get('#v-login-password').type('your-password')
-        cy.get('.modal-submit-button').click()
-        return this
+    login(number,password) {
+        cy.get('#auth').type(number);
+        cy.get('#v-login-password').type(password);
+        cy.get('.modal-submit-button').click();
+        return this;
     }
 
     verifyMyAccount() {
-        cy.url().should('include', '/my-account')
-        cy.contains('My Account')
-        return this
+        cy.url().should('include', '/my-account');
+        cy.contains('My Account');
+        return this;
     }
 
     showResults() {
