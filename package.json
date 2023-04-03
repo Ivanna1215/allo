@@ -8,7 +8,7 @@
     "cy:open": "cypress open"
   },
   "devDependencies": {
-    "cypress": "^12.5.1",
+    "cypress": "^12.9.0",
     "cypress-mochawesome-reporter": "^3.3.0",
     "cypress-multi-reporters": "^1.6.2",
     "mocha": "^10.2.0",
