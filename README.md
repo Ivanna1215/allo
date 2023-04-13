@@ -1,11 +1,12 @@
 # allo
 
 This  test project is a test automation suite for allo.ua, a popular online marketplace in Ukraine. It uses the Cypress testing framework to automate various user scenarios and ensure the website's functionality and user experience meet the expected standards.
-
-Install 'node.js'.
-Install 'cypress' via 'npm'.
-Clone this repository to your local machine.
-Install dependencies by running 'npm install'.
+## Getting started
+To get started with this project, follow these steps:
+Install Node.js
+Install Cypress via npm: npm install cypress
+Clone this repository to your local machine
+Install dependencies by running: npm install
 
 ## Execution
 ### Build and open Cypress Test Runner
