@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import selectors from "./selectors";
+
+/**
+ * Wait until spinner exist
+ * @memberOf Cypress.Chainable#
+ * @name waitUntilSpinnerExist
+ * @function
+ */
+
+Cypress.Commands.add('waitUntilSpinnerExist', () => {
+    cy.get(selectors.spinner)
+        .should('not.exist');
+});

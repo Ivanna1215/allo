@@ -1,28 +1,27 @@
 import testData from "../fixtures/test-data";
-import mainPage from "../support/page-objects/main-page";
+import alloPage from "../support/page-objects/allo-page";
 
 describe('Test task for Allo', function () {
 
   beforeEach(() => {
     cy.visit('/');
+    alloPage.verifyPageIsOpened(testData.url)
   })
 
   it('Verify if the price filter working correctly for the folloving marketplaces', () => {
-    mainPage
-      .verifyPageIsOpened(testData.url)
+    alloPage
       .selectMarketplace(testData.marketplace)
       .selectCategory(testData.categoryComputers)
       .selectSubcategory(testData.subcategoryLaptop)
       .filterByBrand(testData.brandLaptop)
       .searchResults(testData.brandLaptop)
-      .filterByPriceRange(15000, 30000)
+      .filterByPriceRange(testData.startPrice, testData.finishPrice)
       .filterByScreenSize(testData.screenSize)
-      .verifyPriceRangeFilter(15000, 30000)
+      .verifyPriceRangeFilter(testData.startPrice, testData.finishPrice)
   })
 
   it('Add items to the basket', () => {
-    mainPage
-      .verifyPageIsOpened(testData.url)
+    alloPage
       .selectMarketplace(testData.marketplace)
       .selectCategory(testData.categoryConnection)
       .selectSubcategory(testData.subcategoryPhones)
@@ -39,18 +38,15 @@ describe('Test task for Allo', function () {
   })
 
   it('Search the item', () => {
-    mainPage
-      .verifyPageIsOpened(testData.url)
+    alloPage
       .searchItem(testData.searchItem)
       .searchResults(testData.searchItem)
   })
 
-  it('Should successfully sign in to Allo', () => {
-    mainPage
-      .verifyPageIsOpened(testData.url)
+  it('Authorization with Invalid Credentials', () => {
+    alloPage
       .signIn()
-      .login(testData.number,testData.password)
-      .verifyMyAccount()
-
+      .login(testData.number, testData.password)
+      .verifyMyAccount();
   })
 })

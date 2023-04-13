@@ -13,6 +13,7 @@ class AlloTestData {
     searchItem = 'Apple iPhone';
     number = '+380990242246';
     password = 'your-password';
-
+    startPrice = 15000;
+    finishPrice = 30000;
 }
 export default new AlloTestData();

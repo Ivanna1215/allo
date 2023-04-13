@@ -6,23 +6,22 @@ module.exports = defineConfig({
     viewportWidth: 1920,
     viewportHeight: 1080,
     video: false,
+    screenshotOnRunFailure: true,
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      require('cypress-mochawesome-reporter/plugin')(on);
     },
-    reporter: "cypress-multi-reporters",
+    reporter: 'cypress-mochawesome-reporter',
     reporterOptions: {
-      reporterEnabled: "mochawesome",
-          "mochawesomeReporterOptions": {
-              "reportDir": "cypress/reports/mocha",
-              "screenshotOnRunFailure": true,
-              "quite": true,
-              "overwrite": true,
-              "html": true,
-              "json": true,
-              "embeddedScreenshots": true
-           }
-      },
-    screenshotsFolder: "cypress/reports/mocha/assets",
-    videosFolder: "cypress/reports/mocha/assets"
+      reportDir: "cypress/reports/",
+      reportPageTitle: 'Allo Tests Report',
+      charts: true,
+      embeddedScreenshots: true,
+      inlineAssets: true,
+      saveAllAttempts: false,
+      timestamp: 'mm_dd_yyyy_HH-MM-ss',
+      reportFilename: 'Allo_Report'
+    },
+    screenshotsFolder: "cypress/reports/assets",
+    videosFolder: "cypress/reports/assets"
   },
 });
